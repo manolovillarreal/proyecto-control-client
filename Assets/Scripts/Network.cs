@@ -17,6 +17,7 @@ public class Network : MonoBehaviour
 
     public event MessageDelegate onConnectedToServer;
     public event BoolDelegate onJoinedRoom;
+    public event BoolDelegate onGameReady;
 
 
     void Start()
@@ -30,9 +31,12 @@ public class Network : MonoBehaviour
 
         socket.On("onConnection", OnConnection);
         socket.On("joinedToRoom", JoinedToRoom);
+        socket.On("gameReady", GameReady);
         socket.Connect();
 
-    } 
+    }
+
+   
 
     void OnConnection(SocketIOEvent evt)
     {
@@ -49,6 +53,12 @@ public class Network : MonoBehaviour
         onJoinedRoom(data.state);
     }
 
+    void GameReady(SocketIOEvent evt)
+    {
+        JsonData data = JsonUtility.FromJson<JsonData>(evt.data);
+        onGameReady(data.state);
+    }
+
     public void JoinRoom(string room)
     {
         JsonData data = new JsonData();
@@ -60,6 +70,23 @@ public class Network : MonoBehaviour
     {
         socket.Emit("playerReady");
     }
+
+    public void SendInput(string command)
+    {
+        PlayerInputData data = new PlayerInputData();
+        data.command = command;
+        socket.Emit("playerInput", JsonUtility.ToJson(data));
+    }
+    public void SendInput(string command,Vector2 dir)
+    {
+        PlayerInputData data = new PlayerInputData();
+        data.command = command;
+        data.axisHorizontal = dir.x;
+        data.axisVertical = dir.y;
+        socket.Emit("playerInput", JsonUtility.ToJson(data));
+    }
+
+
 }
 
 class JsonData
@@ -67,6 +94,12 @@ class JsonData
     public string message;
     public string room;
     public bool state;
+}
+public class PlayerInputData
+{
+    public string command;
+    public float axisHorizontal;
+    public float axisVertical;
 }
 
 

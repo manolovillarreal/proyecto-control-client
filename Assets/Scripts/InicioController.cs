@@ -35,7 +35,10 @@ public class InicioController : MonoBehaviour
         else
             Debug.Log("Join Room Failed");
     }
-
+    void OnDestroy()
+    {
+        Debug.Log("OnDestroy InicioController");
+    }
     public void JoinRoom()
     {
         InputField txtInputField = GameObject.Find("TxtRoomCode").GetComponent<InputField>();

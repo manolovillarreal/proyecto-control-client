@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 475363393}
   - component: {fileID: 475363392}
   - component: {fileID: 475363391}
+  - component: {fileID: 475363394}
   m_Layer: 5
   m_Name: TxtRoomCode
   m_TagString: Untagged
@@ -341,6 +342,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 475363389}
   m_CullTransparentMesh: 0
+--- !u!114 &475363394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475363389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d6511899f0161498402230f5ccdebe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &652648018
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +708,10 @@ PrefabInstance:
     - target: {fileID: 438176, guid: cbe5119cf3bbba94aabd5ace819dae01, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460792, guid: cbe5119cf3bbba94aabd5ace819dae01, type: 3}
+      propertyPath: settings.url
+      value: 192.168.211.101
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbe5119cf3bbba94aabd5ace819dae01, type: 3}
